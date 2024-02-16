@@ -19,7 +19,11 @@ python -m venv venv
 ```
 pip install -r requirements.txt
 ```
-5.  Start the project using the following command:
+5.  Start the project for Chrome using the following command:
 ```
-pytest
+pytest -v --tb=line --reruns 2 --browser_name=chrome ritm/tests/test_check_box.py
+```
+6.  Start the project for Firefox using the following command:
+```
+pytest -v --tb=line --reruns 2 --browser_name=firefox ritm/tests/test_check_box.py
 ```

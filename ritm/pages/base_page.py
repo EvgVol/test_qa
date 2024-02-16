@@ -1,26 +1,30 @@
 from dataclasses import dataclass
-from typing import Any
-
-from selenium.common.exceptions import (NoSuchElementException)
+from typing import Any, Tuple
 
 
 @dataclass
 class BasePage():
-    """Необходимые методы для работы с webdriver."""
+    """Методы для работы с webdriver."""
 
     browser: Any
     url: str
     timeout: int = 5
 
-    def __post_init__(self) -> None:
+    def __post_init__(self):
         self.browser.implicitly_wait(self.timeout)
 
-    def open(self) -> None:
+    def open(self):
         self.browser.get(self.url)
 
-    def is_element_present(self, how: Any, what: str) -> bool:
-        try:
-            self.browser.find_element(how, what)
-        except NoSuchElementException:
-            return False
-        return True
+    def click_to_link(self, locator: Tuple[str, str]):
+        element = self.browser.find_element(*locator)
+        assert element.is_displayed(), (
+            "The element is not displayed on the page."
+        )
+        self.browser.execute_script(
+            'return arguments[0].scrollIntoView(true)', element
+        )
+        element.click()
+
+    def is_element_present(self, locator: Tuple[str, str], message:str):
+        assert self.browser.find_element(*locator).is_displayed(), message

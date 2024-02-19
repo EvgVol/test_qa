@@ -3,22 +3,15 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
-def pytest_addoption(parser):
-    parser.addoption('--browser_name', action='store', default='chrome',
-                     help="Choose browser: chrome or firefox")
-
-
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="session", params=["chrome", "firefox"])
 def browser(request):
-    browser_name = request.config.getoption("browser_name")
-    browser = None
 
-    if browser_name == "chrome":
+    if request.param == "chrome":
         options = Options()
         options.page_load_strategy = 'eager'
         print("\nstart chrome browser for test..")
         browser = webdriver.Chrome(options=options)
-    elif browser_name == "firefox":
+    elif request.param == "firefox":
         options = webdriver.FirefoxOptions()
         options.page_load_strategy = 'eager'
         print("\nstart firefox browser for test..")

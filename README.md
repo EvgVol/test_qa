@@ -25,5 +25,5 @@ pip install -r requirements.txt
 ```
 6.  Start the project for Chrome and Firefox using the following command:
 ```
-pytest -v --tb=line --reruns 2
+pytest
 ```

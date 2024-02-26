@@ -1,7 +1,7 @@
 from pages.main_page import MainPage
 from pages.elements_page import ElementsPage
 from pages.check_box_page import CheckBoxPage
-import requests
+
 
 LINK = 'https://demoqa.com/'
 

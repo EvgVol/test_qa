@@ -11,19 +11,11 @@ git clone https://github.com/evgvol/test_qa.git
 ```
 cd test_qa
 ```
-3. Create of virtual environments by executing the command:
+3. Create and install of virtual environments by executing the command:
 ```
-python -m venv venv
+poetry install
 ```
-4. Run of virtual environments by executing the command:
-```
-. venv/Scripts/activate
-```
-5. Install the dependencies using the following command: 
-```
-pip install -r requirements.txt
-```
-6.  Start the project for Chrome and Firefox using the following command:
+4.  Start the project for Chrome and Firefox using the following command:
 ```
 pytest
 ```
